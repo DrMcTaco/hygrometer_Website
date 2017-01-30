@@ -9,8 +9,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
-function showTable() { 
-  if (window.XMLHttpRequest) {
+function showTable() {
+  document.getElementById("txtHint").innerHTML = "i changed"; 
+  /*if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
   } else {
@@ -24,7 +25,7 @@ xmlhttp.onreadystatechange = function() {
 };
 
 xmlhttp.open("GET","getMoistureData.php",true);
-xmlhttp.send();
+xmlhttp.send();*/
 }
 </script>
 
