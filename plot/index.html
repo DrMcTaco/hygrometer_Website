@@ -20,6 +20,7 @@ function showTable() {
   }
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
+    document.getElementById("debug").innerHTML = "php ran";
     document.getElementById("txtHint").innerHTML = this.responseText;
   }
 };
@@ -45,6 +46,8 @@ xmlhttp.send();
 <div id="txtHint">
   <b>Moisture data will be listed here...</b>
 </div>
+
+<div id="debug"></div>
 
 </body>
 </html>
