@@ -3,7 +3,7 @@
 <head>
 <style>
 table {
-width: 100%;
+width: 90%;
 border-collapse: collapse;
 }
 
@@ -24,7 +24,7 @@ if (!$con) {
 	die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"ajax_demo");
+mysqli_select_db($con,"moisture");
 $sql="SELECT * FROM moistureData ORDER BY timeStamp DESC LIMIT 10";
 $result = mysqli_query($con,$sql);
 
