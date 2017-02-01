@@ -17,6 +17,9 @@ function showTable() {
       dataType: 'html',
       success: function(data){
         $('txtHint').innerHTML(data)
+      },
+      failure: function(){
+        window.alert("Failure")
       }
   });
   /*if (window.XMLHttpRequest) {
