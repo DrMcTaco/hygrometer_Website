@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Soul Moisture Plot</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,7 +10,16 @@
 
 <script>
 function showTable() {
-  if (window.XMLHttpRequest) {
+
+  $.ajax({
+      url: getMoistureData.php, 
+      type: 'GET',
+      dataType: 'html',
+      success: function(data){
+        $('txtHint').innerHTML(data)
+      }
+  });
+  /*if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
   } else {
@@ -25,7 +34,7 @@ xmlhttp.onreadystatechange = function() {
 };
 
 xmlhttp.open("GET","getMoistureData.php",true);
-xmlhttp.send();
+xmlhttp.send(); */
 }
 </script>
 
@@ -49,6 +58,7 @@ xmlhttp.send();
 
 </body>
 
+<!--Google Analytics Script-->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
