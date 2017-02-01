@@ -3,7 +3,7 @@
 <head>
 <style>
 table {
-width: 90%;
+width: 100%;
 border-collapse: collapse;
 }
 
