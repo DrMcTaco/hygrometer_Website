@@ -12,14 +12,13 @@
 function showTable() {
 
   $.ajax({
-      url: getMoistureData.php, 
-      type: 'GET',
-      dataType: 'html',
+      url: "getMoistureData.php", 
+      type: 'POST',
       success: function(data){
-        $('txtHint').innerHTML(data)
+        $('txtHint').innerHTML(data);
       },
-      failure: function(){
-        window.alert("Failure")
+      failure: function(data, textStatus, jqXHR){
+        resp.html("There is an error")
       }
   });
   /*if (window.XMLHttpRequest) {
