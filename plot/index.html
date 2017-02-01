@@ -15,7 +15,7 @@ function showTable() {
       url: "getMoistureData.php", 
       type: 'POST',
       success: function(data){
-        window.alert("succes")
+        window.alert(data)
         $('txtHint').innerHTML(data);
       },
       failure: function(data, textStatus, jqXHR){
