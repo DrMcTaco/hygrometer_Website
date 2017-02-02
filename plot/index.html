@@ -1,44 +1,35 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
   <title>Soul Moisture Plot</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="jquery.flot.js"></script>
+  <script type="text/javascript" src="jquery.flot.time.js"></script>
 
-<script>
+<script type="text/javascript">
+var options = {
+    xaxis:{mode:"time"}
+  };
+
 function showTable() {
-
   $.ajax({
       url: "getMoistureData.php", 
       type: 'POST',
+      dataType: 'json',
       success: function(data){
-        window.alert("succes")
-        $('txtHint').innerHTML(data);
+        $.plot("#placeholder", [data['Moisture1']], options);
+        //console.log(data);
+
       },
       failure: function(data, textStatus, jqXHR){
-        window.alert("failure")
-        resp.html("There is an error")
+        $('#moisturedata').html("There is an error");
       }
   });
-  /*if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp = new XMLHttpRequest();
-  } else {
-    // code for IE6, IE5
-    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("txtHint").innerHTML = this.responseText;
-  }
-};
-
-xmlhttp.open("GET","getMoistureData.php",true);
-xmlhttp.send(); */
 }
 </script>
 
@@ -51,14 +42,15 @@ xmlhttp.send(); */
   <p>This will be a plot.</p> 
 </div>
 
+<div class="container">
+  <button name="moisture" onclick="showTable()">Get Data</button>
 
-<button name="moisture" onclick="showTable()">Get Data</button>
-
-<br>
-<div id="txtHint">
-  <b>Moisture data will be listed here...</b>
+  <br>
+  <div id="moisturedata">
+    <b>Moisture data will be listed here...</b>
+  </div>
+  <div id="placeholder" style="width:600px;height:300px"></div>
 </div>
-
 
 </body>
 

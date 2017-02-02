@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-table {
-width: 90%;
-border-collapse: collapse;
-}
-
-table, td, th {
-border: 1px solid black;
-padding: 5px;
-}
-
-th {text-align: left;}
-</style>
-</head>
-<body>
-
 <?php
 
 $con = mysqli_connect('localhost','monitor','password','moisture');
@@ -25,26 +6,15 @@ if (!$con) {
 }
 
 mysqli_select_db($con,"moisture");
-$sql="SELECT * FROM moistureData ORDER BY timeStamp DESC LIMIT 10";
+$sql="SELECT unix_timestamp(timestamp) * 1000, moisture1, moisture2, moisture3 FROM moistureData ORDER BY timeStamp DESC LIMIT 10";
 $result = mysqli_query($con,$sql);
-
-echo "<table>
-<tr>
-<th>Timestamp</th>
-<th>Moisture 1</th>
-<th>Moisture 2</th>
-<th>Moisture 3</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-echo "<tr>";
-echo "<td>" . $row[0] . "</td>";
-echo "<td>" . $row[1] . "</td>";
-echo "<td>" . $row[2] . "</td>";
-echo "<td>" . $row[3] . "</td>";
-echo "</tr>";
+$rows = array('Moisture1' => array(), "Moisture2" => array(), 'Moisture3' => array());
+while($row = mysqli_fetch_array($result)){
+	array_push($rows['Moisture1'], array($row['unix_timestamp(timestamp) * 1000'], $row['moisture1']));
+	array_push($rows['Moisture2'], array($row['unix_timestamp(timestamp) * 1000'], $row['moisture2']));
+	array_push($rows['Moisture3'], array($row['unix_timestamp(timestamp) * 1000'], $row['moisture3']));
 }
-echo "</table>";
+
+echo (json_encode($rows));
 mysqli_close($con);
 ?>
-</body>
-</html>
