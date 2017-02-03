@@ -23,9 +23,8 @@ function showTable() {
       dataType: 'json',
       success: function(data){
         $.plot("#placeholder", [data['Moisture1']], options);
-        //console.log(data);
-
       },
+      
       failure: function(data, textStatus, jqXHR){
         $('#moisturedata').html("There is an error");
       }
